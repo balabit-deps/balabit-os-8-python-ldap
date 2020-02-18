@@ -1,0 +1,53 @@
+Source: python-ldap
+Section: python
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
+Uploaders: Willem van den Akker <wvdakker@wilsoft.nl>
+Standards-Version: 4.4.1
+Build-Depends: debhelper-compat (= 12),
+ libldap2-dev, libsasl2-dev, dh-python,
+ python3-all-dev,
+ python3-all-dbg,
+ python3-setuptools,
+ python3-pyasn1-modules,
+Homepage: https://www.python-ldap.org
+Vcs-Browser: https://salsa.debian.org/python-team/modules/python-ldap
+Vcs-Git: https://salsa.debian.org/python-team/modules/python-ldap.git
+Testsuite: autopkgtest-pkg-python
+
+Package: python3-ldap
+Architecture: any
+Multi-Arch: same
+Depends: ${python3:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Provides: python3-pyldap, ${python3:Provides}
+Conflicts: python3-pyldap (<< 3)
+Replaces: python3-pyldap
+Suggests: python3-pyasn1
+Description: LDAP interface module for Python3
+ This module provides a Python3 interface to the OpenLDAP client library
+ (LDAP is the Lightweight Directory Access Protocol).
+
+Package: python3-ldap-dbg
+Section: debug
+Architecture: any
+Multi-Arch: same
+Depends: python3-ldap (= ${binary:Version}), python3-dbg, ${python3:Depends}, ${misc:Depends}, ${shlibs:Depends}
+Provides: ${python3:Provides}
+Description: LDAP interface module for Python3 (debug extension)
+ This module provides a Python3 interface to the OpenLDAP client library
+ (LDAP is the Lightweight Directory Access Protocol).
+ .
+ This package contains the extension built for the Python debug interpreter.
+
+Package: python3-pyldap
+Section: oldlibs
+Architecture: any
+Multi-Arch: same
+Depends: python3-ldap (>= 3), ${misc:Depends}
+Description: LDAP interface module for Python 3.x - transition package
+ This module provides a Python3 interface to the OpenLDAP client library
+ (LDAP is the Lightweight Directory Access Protocol).
+ .
+ This transition dummy package for Python 3.x can be safely removed, since the
+ ldap module has merged changes in the pyldap fork.

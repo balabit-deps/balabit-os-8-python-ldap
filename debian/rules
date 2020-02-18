@@ -1,0 +1,14 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+export PYBUILD_NAME = ldap
+export PYBUILD_TEST_PYTEST = 0
+
+%:
+	dh $@ --with python3 --buildsystem=pybuild
+
+override_dh_strip:
+	dh_strip -ppython3-ldap --dbg-package=python3-ldap-dbg
+
+override_dh_auto_test:
