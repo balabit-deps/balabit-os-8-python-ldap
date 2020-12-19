@@ -1,3 +1,9 @@
+python-ldap (3.2.0-4ubuntu2bb1) focal; urgency=medium
+
+  * Balabit patched version
+
+ -- Balabit Platform Team <devnull@dev.null>  Sat, 19 Dec 2020 03:06:28 +0100
+
 python-ldap (3.2.0-4ubuntu2) focal; urgency=medium
 
   * No-change rebuild to drop python3.7.
