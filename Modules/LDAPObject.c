@@ -1173,7 +1173,7 @@ l_ldap_result4(LDAPObject *self, PyObject *args)
             e = "ldap_parse_result";
         ldap_msgfree(msg);
         Py_XDECREF(valuestr);
-        return LDAPerror(self->ldap, e);
+        return LDAPerror_with_message_id( self->ldap, e, res_msgid);
     }
 
     if (!(pyctrls = LDAPControls_to_List(serverctrls))) {
@@ -1184,7 +1184,7 @@ l_ldap_result4(LDAPObject *self, PyObject *args)
         LDAP_END_ALLOW_THREADS(self);
         ldap_msgfree(msg);
         Py_XDECREF(valuestr);
-        return LDAPerror(self->ldap, "LDAPControls_to_List");
+        return LDAPerror_with_message_id(self->ldap, "LDAPControls_to_List", res_msgid);
     }
     ldap_controls_free(serverctrls);
 

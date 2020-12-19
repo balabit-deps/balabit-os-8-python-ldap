@@ -50,6 +50,12 @@ LDAPerr(int errnum)
 PyObject *
 LDAPerror(LDAP *l, char *msg)
 {
+    return LDAPerror_with_message_id(l, msg, -1);
+}
+
+PyObject *
+LDAPerror_with_message_id(LDAP *l, char *msg, int msg_id)
+{
     if (l == NULL) {
         PyErr_SetFromErrno(LDAPexception_class);
         return NULL;
@@ -91,6 +97,12 @@ LDAPerror(LDAP *l, char *msg)
             if (pyerrno)
                 PyDict_SetItemString(info, "errno", pyerrno);
             Py_XDECREF(pyerrno);
+        if (msg_id > 0) {
+            PyObject *pymsg_id = PyInt_FromLong(msg_id);
+            if (pymsg_id)
+                PyDict_SetItemString(info, "msg_id", pymsg_id);
+            Py_XDECREF(pymsg_id);
+        }
         }
 
         if (ldap_get_option(l, LDAP_OPT_MATCHED_DN, &matched) >= 0
