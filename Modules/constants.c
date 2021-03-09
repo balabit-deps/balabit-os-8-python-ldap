@@ -97,15 +97,16 @@ LDAPerror_with_message_id(LDAP *l, char *msg, int msg_id)
             if (pyerrno)
                 PyDict_SetItemString(info, "errno", pyerrno);
             Py_XDECREF(pyerrno);
-        if (msg_id > 0) {
+       }
+
+       if (msg_id > 0) {
             PyObject *pymsg_id = PyInt_FromLong(msg_id);
             if (pymsg_id)
                 PyDict_SetItemString(info, "msg_id", pymsg_id);
             Py_XDECREF(pymsg_id);
-        }
-        }
+       }
 
-        if (ldap_get_option(l, LDAP_OPT_MATCHED_DN, &matched) >= 0
+       if (ldap_get_option(l, LDAP_OPT_MATCHED_DN, &matched) >= 0
             && matched != NULL) {
             if (*matched != '\0') {
                 str = PyUnicode_FromString(matched);
