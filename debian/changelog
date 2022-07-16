@@ -1,3 +1,15 @@
+python-ldap (3.2.0-4ubuntu2.1) focal-security; urgency=medium
+
+  * SECURITY UPDATE: Regular Expression DoS
+    - debian/patches/CVE-2021-46823-pre.patch: get rid of
+      expected failures in tokenizer tests in Lib/ldap/schema/tokenizer.py,
+      Tests/t_ldap_schema_tokenizer.py.
+    - debian/patches/CVE-2021-46823.patch: fix ReDoS in
+      regex in Lib/ldap/schema/tokenizer.py.
+    - CVE-2021-46823
+
+ -- Leonidas Da Silva Barbosa <leo.barbosa@canonical.com>  Mon, 04 Jul 2022 13:28:40 -0300
+
 python-ldap (3.2.0-4ubuntu2bb2) focal; urgency=medium
 
   * Fix incorrect forward-port of msg_id patch
